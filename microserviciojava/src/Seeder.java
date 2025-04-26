@@ -20,6 +20,8 @@ public class Seeder {
         Connection conn = waitForConnection();
         if (conn == null) return;
 
+        waitForTable(conn);
+
         try {
             String sql = "INSERT INTO products (name, category_id, supplier_id) VALUES (?, ?, ?)";
             PreparedStatement ps = conn.prepareStatement(sql);
