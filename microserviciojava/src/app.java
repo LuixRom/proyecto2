@@ -1,5 +1,3 @@
-package src;
-
 import java.sql.*;
 import com.sun.net.httpserver.*;
 import java.io.*;
