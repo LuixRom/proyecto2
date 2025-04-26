@@ -1,9 +1,13 @@
 FROM openjdk:17-jdk-slim
 WORKDIR /app
+
 RUN apt-get update && apt-get install -y wget && \
     wget https://jdbc.postgresql.org/download/postgresql-42.7.3.jar -O postgresql.jar
 
 COPY ./src /app/src
-RUN javac -cp "postgresql.jar" src/*.java
+COPY entrypoint.sh /app/entrypoint.sh
 
-CMD java -cp ".:postgresql.jar:src" app && java -cp ".:postgresql.jar:src" Seeder
+RUN javac -cp "postgresql.jar" src/*.java
+RUN chmod +x entrypoint.sh
+
+CMD ["./entrypoint.sh"]
