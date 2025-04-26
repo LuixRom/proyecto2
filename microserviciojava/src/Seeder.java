@@ -16,6 +16,19 @@ public class Seeder {
         return null;
     }
 
+    public static void waitForTable(Connection conn) {
+        int tries = 0;
+        while (tries < 10) {
+            try (PreparedStatement ps = conn.prepareStatement("SELECT 1 FROM products LIMIT 1")) {
+                ps.executeQuery();
+                return;
+            } catch (Exception e) {
+                try { Thread.sleep(3000); } catch (InterruptedException ignored) {}
+            }
+            tries++;
+        }
+    }
+
     public static void main(String[] args) {
         Connection conn = waitForConnection();
         if (conn == null) return;
