@@ -9,4 +9,4 @@ COPY ./src /app/src
 
 RUN javac -cp "postgresql.jar" src/*.java
 
-CMD ["sh", "-c", "java -cp postgresql.jar:src src.app & sleep 10 && java -cp postgresql.jar:src src.Seeder"]
+CMD ["sh", "-c", "java -cp postgresql.jar:src app & sleep 10 && java -cp postgresql.jar:src Seeder"]
