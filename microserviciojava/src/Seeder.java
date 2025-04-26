@@ -7,7 +7,7 @@ public class Seeder {
         if (conn == null) return;
 
         try {
-            String sql = "INSERT INTO product (name, category_id, supplier_id) VALUES (?, ?, ?)";
+            String sql = "INSERT INTO products (name, category_id, supplier_id) VALUES (?, ?, ?)";
             PreparedStatement ps = conn.prepareStatement(sql);
 
             for (int i = 1; i <= 20000; i++) {
