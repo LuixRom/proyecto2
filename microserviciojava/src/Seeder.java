@@ -2,8 +2,22 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 
 public class Seeder {
+
+    public static Connection waitForConnection() {
+        int tries = 0;
+        while (tries < 10) {
+            try {
+                Connection conn = DBconnection.connect();
+                if (conn != null) return conn;
+                Thread.sleep(3000);
+            } catch (Exception ignored) {}
+            tries++;
+        }
+        return null;
+    }
+
     public static void main(String[] args) {
-        Connection conn = DBconnection.connect();
+        Connection conn = waitForConnection();
         if (conn == null) return;
 
         try {
@@ -23,3 +37,4 @@ public class Seeder {
         }
     }
 }
+
