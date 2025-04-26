@@ -1,4 +1,3 @@
-package src;
 public class Inventario {
     private int id;
     private int productId;
